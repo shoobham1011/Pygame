@@ -1,37 +1,45 @@
 import pygame
+import os
 from pygame.locals import *
+
+screen_width = 800
+screen_height = 600
 
 '''define fps'''
 clock = pygame.time.Clock()
 fps = 60
-
-'''Creating the screen'''
-screen_width = 800
-screen_height = 600
+SPACESHIP_WIDTH, SPACESHIP_HEIGHT = 55, 40
 
 '''Caption and Icon'''
 screen = pygame.display.set_mode((screen_width,  screen_height))
-pygame.display.set_caption('Space Shooter')
+pygame.display.set_caption('Space Fight')
 
 '''load image'''
 bg = pygame.image.load('backgroundSPACE.png')
 
-'''used blit fucntion to display  img '''
+SPACESHIP_IMG = pygame.image.load('SHUTTLE.png')
+SPACESHIP_IMG = pygame.transform.rotate(pygame.transform.scale(SPACESHIP_IMG, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 90)
+
+SPACESHIP_IMG2 = pygame.image.load('SPACESHIP.png')
+SPACESHIP_IMG2 = pygame.transform.rotate(pygame.transform.scale(SPACESHIP_IMG2, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
+
+
+
+
+'''used blit function to display  img '''
 def draw_bg():
     screen.blit(bg, (0, 0))
+    screen.blit(SPACESHIP_IMG, (100, 100))
+    screen.blit(SPACESHIP_IMG2, (600, 100))
 
-'''create spaceship  class'''
-class Spaceship(pygame.sprite.Sprite):
-    def __init__(self, x, y):
-        pygame.sprite.Sprite.__init__(self)
-        self.image =  pygame.image.load('SHIP.png')
-        self.rect = self.image.get_rect()
-        self.rect.center = [x,  y]
+
+
+
 
 run = True
 while run:
     clock.tick(fps)
-    '''draw background'''
+    '''draw background  in  main window'''
     draw_bg()
 
 
